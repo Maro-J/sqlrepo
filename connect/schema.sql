@@ -35,20 +35,24 @@ CREATE TABLE "connections_with_people" (
 
 CREATE TABLE "connections_with_school" (
     "id" INTEGER,
+    "user_id" INTEGER,
     "school_id" INTEGER,
     "start-date" NUMERIC,
     "end_date" NUMERIC,
     "degree" TEXT,
     PRIMARY KEY ("id"),
-    FOREIGN KEY("school_id") REFERENCES "school_and_universities"("id")
+    FOREIGN KEY("school_id") REFERENCES "school_and_universities"("id"),
+    FOREIGN KEY("user_id") REFERENCES "users"("id")
 );
 
 CREATE TABLE "connections_with_company" (
     "id" INTEGER,
+    "user_id" INTEGER,
     "company_id" INTEGER,
     "start-date" NUMERIC,
     "end_date" NUMERIC,
     "title_held" TEXT,
     PRIMARY KEY ("id"),
-    FOREIGN KEY("company_id") REFERENCES "companies"("id")
+    FOREIGN KEY("company_id") REFERENCES "companies"("id"),
+    FOREIGN KEY("user_id") REFERENCES "users"("id")
 );
