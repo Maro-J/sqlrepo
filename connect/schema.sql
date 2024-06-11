@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS "users";
+DROP TABLE IF EXISTS "schools_and_universities";
+DROP TABLE IF EXISTS "companies";
+DROP TABLE IF EXISTS "connections_with_people";
+DROP TABLE IF EXISTS "connections_with_school";
+DROP TABLE IF EXISTS "connections_with_company";
+
 CREATE TABLE "users" (
     "id" INTEGER,
     "first_name" TEXT NOT NULL,
