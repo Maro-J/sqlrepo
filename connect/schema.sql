@@ -18,7 +18,7 @@ CREATE TABLE "schools_and_universities" (
     "id" INTEGER,
     "name" TEXT UNIQUE,
     "type" TEXT,
-    "location" TEXT
+    "location" TEXT,
     "year_founded" NUMERIC,
     PRIMARY KEY("id")
 );
@@ -63,3 +63,26 @@ CREATE TABLE "connections_with_company" (
     FOREIGN KEY("company_id") REFERENCES "companies"("id"),
     FOREIGN KEY("user_id") REFERENCES "users"("id")
 );
+
+
+INSERT INTO "users" ("id", "first_name", "last_name", "username", "password")
+VALUES
+(1, 'Alan', 'Garber', 'alan', 'password'),
+(2, 'Reid', 'Hoffman', 'reid', 'password');
+
+INSERT INTO "schools_and_universities" ("name", "type", "location", "year_founded")
+VALUES
+('Harvard University', 'University', 'Cambridge, Massachusetts', '1636');
+
+INSERT INTO "companies" ("name", "industry", "location")
+VALUES
+('LinkedIn', 'Technology', 'Sunnyvale, California');
+('FirstBank', 'Banking & Finance', 'Lagos, Nigeria');
+
+INSERT INTO "connections_with_school" ("user_id", "school_id", "start-date", "end_date", "degree")
+VALUES
+((SELECT "id" FROM "users" WHERE "first_name" = 'Alan'),(SELECT "id" FROM "schools_and_universities" WHERE "name" = 'Harvard University'), '1973-09-01', '1976-06-01', 'BA')
+
+INSERT INTO "connections_with_company" ("user_id", "company_id", "start-date", "end_date", "title_held")
+VALUES
+((SELECT "id" FROM "users" WHERE "first_name" = 'Reid'),(SELECT "id" FROM "companies" WHERE "name" = 'LinkedIn'), '2003-01-01', '2007-02-01', 'CEO and Chairman')
